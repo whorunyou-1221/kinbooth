@@ -1,0 +1,1 @@
+dbname = photo_booth_db;
