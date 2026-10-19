@@ -1,27 +1,45 @@
-import './TopNav.css';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 const TopNav = () => {
 
   return (
-   <nav class="navbar">
-  <a href="#" class="logo">
-    <span>Kin</span><span class="logo-accent">Booth</span>
-  </a>
+   <>
+      <Navbar bg="dark" data-bs-theme="dark">
+        <Container>
+          <Navbar.Brand onClick={() => NavigateEvent('/')}>KinBooth</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+      <br />
+      <Navbar bg="primary" data-bs-theme="dark">
+        <Container>
+          <Navbar.Brand onClick="#home">Navbar</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
 
-  <div class="nav-links">
-    <a href="#how-it-works">How it works</a>
-    <a href="#filters">Our filters</a>
-    <a href="#about">About</a>
-  </div>
-
-  <a href="#create" class="nav-cta">
-    Create a booth <span>→</span>
-  </a>
-
-  <button class="menu-toggle" aria-label="Open menu">
-    ☰
-  </button>
-</nav>
+      <br />
+      <Navbar bg="light" data-bs-theme="light">
+        <Container>
+          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+    </>
   )
 };
 
