@@ -1,83 +1,47 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
+const { Photo, Template, PhotoSession, SavedPhoto, PhotoSticker } = require('../models');
 
-const { User, PhotoSession, SavedPhoto, Collage  } = require('../models')
-
-//get request => list of user
-router.get("/", async (req, res) => { 
-    try {
-     const userList = await User.findAll({ 
-        attributes: ["id", "name", "email", "password"],
-        include:[
-            {
-                model: PhotoSession,
-                attributes: ["id", "SessionDate"],
-                include: {
-                  model: Collage,
-                  attributes: ["id", "CollageName", "PhotoCount", "PreviewPath"],
-                },
-            },
-            {
-                  model: SavedPhoto,
-                  attributes: ["id", "SavedAt"],
-        
-            }
-        ]
-    }); 
-    res.status(200).json(userList); 
-} catch (error) { 
-    res.status(500).json({ message: "An error occurred while fetching user data!" 
-
-    }); 
-} 
-});
-//get user details using user id
-router.get("/:id", async(req, res) => {
-    const { id } = req.params;
-    try{
-       const user = await User.findAll({
-        attributes:["id","name", "email", "password", "create_at"],
-        where: {id: id},
-       });
-       res.status(200).json(user)
-    } catch (error) {
-        res.status(500).json({message: "database error while fetching user data!"})
-    }
-});
-//add new user\\
-router.post("/new", async (req, res) => {
-    try{
-        const newUser = req.body
-        await User.create(newUser)
-        res.status(201).json({message: "new user data created"})
-    } catch (error){
-        res.status(404).json({message: "An error occured while adding new user"})
-    }
-});
-//update user data
-router.put("/:id", async (req,res) => {
-const {id} = req.params
-const {name, email, password} = req.body
-try{
-    const user = await User.update(
-        {
-            name: name,
-            email: email,
-            password: password
-        }, 
-        {
-            where: {id : id}
-        }
-    )
-    if(user [0] === 0) {
-        return res.status(404).json ({message: "UpdateError: user data not found! "})
-    }
-    res.status(200).json ({message: "successfully updated user data!"});
-}catch (error){
-    res.status(400).json ({message: "an error occurred while updating user data"});
-
-}
+router.get('/', async (req, res) => {
+  try {
+    const list = await Photo.findAll({
+      include: [Template, PhotoSession, SavedPhoto, PhotoSticker]
+    });
+    res.status(200).json(list);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching photos', error: error.message });
+  }
 });
 
-//last line
+router.get('/:id', async (req, res) => {
+  try {
+    const item = await Photo.findByPk(req.params.id, {
+      include: [Template, PhotoSession, SavedPhoto, PhotoSticker]
+    });
+    if (!item) return res.status(404).json({ message: 'Photo not found' });
+    res.status(200).json(item);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching photo', error: error.message });
+  }
+});
+
+router.post('/new', async (req, res) => {
+  try {
+    const newItem = await Photo.create(req.body);
+    res.status(201).json({ message: 'Photo created successfully', item: newItem });
+  } catch (error) {
+    res.status(400).json({ message: 'Error creating photo', error: error.message });
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const deleted = await Photo.destroy({ where: { id: req.params.id } });
+    if (!deleted) return res.status(404).json({ message: 'Photo not found for deletion' });
+    res.status(200).json({ message: 'Photo deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting photo', error: error.message });
+  }
+});
+
 module.exports = router;

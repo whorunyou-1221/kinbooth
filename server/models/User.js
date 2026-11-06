@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) =>{
+module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define("User", {
         name: {
             type: DataTypes.STRING,
@@ -6,15 +6,14 @@ module.exports = (sequelize, DataTypes) =>{
         },
         email: {
             type: DataTypes.STRING,
-            alloNull: false,
+            allowNull: false,
         },
         password: {
             type: DataTypes.STRING,
-            alloNull: false,
+            allowNull: false,
         },
     });
 
-    //associations
     User.associate = (models) => {
         User.hasMany(models.SavedPhoto);
         User.hasMany(models.PhotoSession);

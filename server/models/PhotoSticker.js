@@ -1,24 +1,24 @@
-module.exports =  (sequelize, DataTypes) => {
-    const PhotoSticker = sequelize.define("PhotoSticker",{
-        PositionX:{
+module.exports = (sequelize, DataTypes) => {
+    const PhotoSticker = sequelize.define("PhotoSticker", {
+        PositionX: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        PositionY:{
+        PositionY: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        Scale:{
+        Scale: {
             type: DataTypes.STRING,
-            allowNUll: false,
+            allowNull: false,
         },
-        Notation:{
+        Notation: {
             type: DataTypes.STRING,
-            allowNUll: false,
+            allowNull: false,
         },
     });
-    //associations
-     PhotoSticker.associate = (models) => {
+
+    PhotoSticker.associate = (models) => {
         PhotoSticker.belongsTo(models.Sticker);
         PhotoSticker.belongsTo(models.Photo);
     };

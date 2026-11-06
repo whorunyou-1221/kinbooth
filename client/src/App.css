@@ -1,0 +1,45 @@
+.navbar-custom {
+  background: linear-gradient(135deg, var(--primary-lavender), var(--secondary-lilac)) !important;
+  box-shadow: 0 4px 12px rgba(127, 86, 217, 0.15);
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+}
+
+.navbar-custom .nav-link:hover {
+  color: #f3ebff !important;
+}
+
+.btn-corporate {
+  background: linear-gradient(135deg, var(--primary-lavender), var(--accent-purple));
+  color: #ffffff;
+  border: none;
+  font-weight: 500;
+  padding: 10px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(127, 86, 217, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-corporate:hover {
+  background: linear-gradient(135deg, #6941C6, #53389E);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(127, 86, 217, 0.35);
+}
+
+.card-corporate {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(127, 86, 217, 0.06);
+  background-color: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-corporate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(127, 86, 217, 0.12);
+}

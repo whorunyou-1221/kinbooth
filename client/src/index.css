@@ -1,0 +1,19 @@
+:root {
+  --primary-lavender: #7F56D9;
+  --secondary-lilac: #A485E0;
+  --bg-light: #F9F8FC;
+  --accent-purple: #6941C6;
+  --text-dark: #2D2640;
+  --border-color: #E6E1F2;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -1,25 +1,24 @@
-module.exports =  (sequelize, DataTypes) => {
-    const Collage = sequelize.define("Collage",{
-        CollageName:{
+module.exports = (sequelize, DataTypes) => {
+    const Collage = sequelize.define("Collage", {
+        CollageName: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        PhotoCount:{
+        PhotoCount: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        LayoutType:{
+        LayoutType: {
             type: DataTypes.STRING,
-            allowNUll: false,
+            allowNull: false,
         },
-        PreviewPath:{
+        PreviewPath: {
             type: DataTypes.STRING,
-            allowNUll: false,
+            allowNull: false,
         },
     });
 
-    //associations
-     Collage.associate = (models) => {
+    Collage.associate = (models) => {
         Collage.hasMany(models.PhotoSession);
     };
 
